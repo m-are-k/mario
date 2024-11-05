@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbi5mdkgcvxb2"]
+
+[ext_resource type="Texture2D" uid="uid://bjv8m3p1afd6d" path="res://Assety/MOBKIS/Tiles/Characters/tile_0018.png" id="1_denll"]
+[ext_resource type="Script" path="res://Skrypty/zuk.gd" id="1_jnst3"]
+[ext_resource type="Texture2D" uid="uid://di3tf46bvte0b" path="res://Assety/MOBKIS/Tiles/Characters/tile_0019.png" id="2_hul8q"]
+[ext_resource type="PackedScene" uid="uid://bujs0njry3q2m" path="res://sceny/killzone.tscn" id="3_57xlp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7x4sg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_denll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hul8q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_be7il"]
+radius = 6.0
+
+[node name="Zuk" type="Node2D"]
+script = ExtResource("1_jnst3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7x4sg")
+autoplay = "default"
+frame_progress = 0.0320837
+
+[node name="Killzone" parent="." instance=ExtResource("3_57xlp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(1, 5)
+shape = SubResource("CircleShape2D_be7il")
+
+[node name="Prawo" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(13, 0)
+
+[node name="Lewo" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(-12, 0)
